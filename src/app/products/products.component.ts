@@ -3,6 +3,7 @@ import { ProductsService, Product } from '../services/products.service';
 import { CommonModule } from '@angular/common';
 import { BehaviorSubject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-products',
@@ -16,7 +17,10 @@ export class ProductsComponent implements OnInit {
   filteredProducts: Product[] = [];
   searchQuery = new BehaviorSubject<string>('');
 
-  constructor(private productsService: ProductsService) {}
+  constructor(
+    private productsService: ProductsService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
     this.productsService.getProducts().subscribe((data) => {
@@ -40,5 +44,9 @@ export class ProductsComponent implements OnInit {
 
   filterProducts(event: any) {
     this.searchQuery.next(event.target.value);
+  }
+
+  logout() {
+    this.authService.logout(); // ✅ Call logout function
   }
 }
