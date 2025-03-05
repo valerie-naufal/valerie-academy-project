@@ -4,13 +4,14 @@ import { CommonModule } from '@angular/common';
 import { BehaviorSubject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
+import { NavbarComponent } from "../core/navbar/navbar.component";
 
 @Component({
   selector: 'app-products',
   standalone: true,
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss'],
-  imports: [CommonModule],
+  imports: [CommonModule, NavbarComponent],
 })
 export class ProductsComponent implements OnInit {
   products: Product[] = [];
@@ -25,7 +26,7 @@ export class ProductsComponent implements OnInit {
   ngOnInit() {
     this.productsService.getProducts().subscribe((data) => {
       this.products = data;
-      this.filteredProducts = data; // Initially, filteredProducts is the same as products
+      this.filteredProducts = data;
     });
 
     //RxJs filtering
@@ -47,6 +48,6 @@ export class ProductsComponent implements OnInit {
   }
 
   logout() {
-    this.authService.logout(); // ✅ Call logout function
+    this.authService.logout();
   }
 }

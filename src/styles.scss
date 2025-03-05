@@ -1,1 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+$base-color: #457b9d;
+$base-font: "Poppins";
+$hover-color: #a8dadc;
+$hover-text-color: #1d3557;
+$background-color: #f4f4f4;
+$error-color: #e63946;
+
+* {
+  font-family: $base-font, sans-serif;
+  color: $base-color;
+  background-color: $background-color;
+}
