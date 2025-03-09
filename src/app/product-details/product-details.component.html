@@ -1,0 +1,18 @@
+<app-navbar></app-navbar>
+
+<div class="product-container" *ngIf="product">
+  <div class="img-div">
+    <div class="img-borders">
+      <img src="assets/zoom.svg" id="zoom" alt="">
+      <img [src]="product.image" [alt]="product.title" class="product-image" />
+    </div>
+  </div>
+  <div class="info-container">
+    <h2>{{ product.title }}</h2>
+    <p class="description">{{ product.description }}</p>
+    <p class="price">{{ product.price | currency }}</p>
+    <button (click)="goBack()">Back to Products</button>
+  </div>
+</div>
+
+<app-footer></app-footer>
