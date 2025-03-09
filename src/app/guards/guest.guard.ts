@@ -13,7 +13,7 @@ export class GuestGuard implements CanActivate {
     return this.authService.isLoggedIn().pipe(
       map((isAuthenticated) => {
         if (isAuthenticated) {
-          this.router.navigate(['/products']);
+          this.router.navigate(['/main']);
           return false;
         }
         return true;
