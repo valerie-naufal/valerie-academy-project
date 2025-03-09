@@ -1,14 +1,14 @@
-<app-navbar></app-navbar>
 <div class="products-container">
   <div class="btn-container">
     <button (click)="logout()" class="logout-btn">Logout</button>
   </div>
-  <input
+<!--   <input
     type="text"
     placeholder="Search..."
     (input)="filterProducts($event)"
     class="search-bar"
-  />
+  /> -->
+  
 
   <div class="products-grid">
     <div *ngFor="let product of products" class="product-card">

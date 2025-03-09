@@ -1,38 +1,69 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductsService, Product } from '../../services/products.service';
+import {
+  ProductsService,
+  IProduct,
+} from '../../core/services/products.service';
 import { CommonModule } from '@angular/common';
 import { BehaviorSubject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
-import { AuthService } from '../../services/auth.service';
-import { NavbarComponent } from '../../core/navbar/navbar.component';
-import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '../../core/services/auth.service';
+import { Router, RouterModule, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-products',
   standalone: true,
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss'],
-  imports: [CommonModule, NavbarComponent, RouterModule],
+  imports: [CommonModule, RouterModule],
 })
 export class ProductsComponent implements OnInit {
-  products: Product[] = [];
-  filteredProducts: Product[] = [];
+  products: IProduct[] = [];
+  filteredProducts: IProduct[] = [];
   searchQuery = new BehaviorSubject<string>('');
+  category: string | null = null;
 
   constructor(
     private productsService: ProductsService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
-    this.productsService.getProducts().subscribe((data) => {
-      this.products = data.filter(
-        (product) =>
-          product.category === 'jewelery' ||
-          product.category === "men's clothing" ||
-          product.category === "women's clothing"
-      );
+    // get category from URL as path parameter
+
+    this.route.paramMap.subscribe((params) => {
+      this.category = params.get('category');
+      // Filter data based on category value
+      this.productsService.getProducts().subscribe((data) => {
+        switch (this.category) {
+          case 'mens':
+            this.products = data.filter(
+              (product) => product.category === "men's clothing"
+            );
+            break;
+
+          case 'womens':
+            this.products = data.filter(
+              (product) => product.category === "women's clothing"
+            );
+            break;
+
+          case 'jewelry':
+            this.products = data.filter(
+              (product) => product.category === 'jewelery'
+            );
+            break;
+
+          default:
+            this.products = data.filter(
+              (product) =>
+                product.category === 'jewelery' ||
+                product.category === "men's clothing" ||
+                product.category === "women's clothing"
+            );
+        }
+      });
     });
 
     //RxJs filtering
@@ -58,9 +89,6 @@ export class ProductsComponent implements OnInit {
   }
   goToProduct(productId: number) {
     console.log(`Attempting to navigate to product ID: ${productId}`);
-    this.router
-      .navigate(['/product', productId])
-      .then((success) => console.log('Navigation Success:', success))
-      .catch((error) => console.error('Navigation Error:', error));
+    this.router.navigate(['/product', productId]);
   }
 }
