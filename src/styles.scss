@@ -8,5 +8,8 @@ $error-color: #e63946;
 * {
   font-family: $base-font, sans-serif;
   color: $base-color;
-  background-color: $background-color;
+}
+
+body{
+  margin:0;
 }
