@@ -1,0 +1,36 @@
+.root {
+  padding: 14px 107px 14px 107px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 10px;
+  box-sizing: border-box;
+  border-radius: 25px;
+  background: #1d3557;
+}
+
+.root_sizeS {
+  width: 140px;
+}
+
+.root_sizeM {
+  width: 288px;
+}
+
+.root_sizeL {
+  width: 432px;
+}
+.logIn {
+  display: flex;
+  box-sizing: content-box;
+  color: #ffffff;
+  font-size: 24px;
+  font-family: Poppins;
+  letter-spacing: 0%;
+  text-decoration: none;
+  font-weight: 500;
+  text-align: left;
+  text-wrap: nowrap;
+}
