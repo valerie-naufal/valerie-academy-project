@@ -5,13 +5,14 @@ import { BehaviorSubject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
 import { NavbarComponent } from "../core/navbar/navbar.component";
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-products',
   standalone: true,
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss'],
-  imports: [CommonModule, NavbarComponent],
+  imports: [CommonModule, NavbarComponent, RouterModule],
 })
 export class ProductsComponent implements OnInit {
   products: Product[] = [];
@@ -20,7 +21,8 @@ export class ProductsComponent implements OnInit {
 
   constructor(
     private productsService: ProductsService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -49,5 +51,12 @@ export class ProductsComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+  }
+  goToProduct(productId: number) {
+    console.log(`Attempting to navigate to product ID: ${productId}`);
+    this.router
+      .navigate(['/product', productId])
+      .then((success) => console.log('Navigation Success:', success))
+      .catch((error) => console.error('Navigation Error:', error));
   }
 }

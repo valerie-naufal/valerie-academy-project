@@ -1,7 +1,8 @@
+@import "../../styles.scss";
+
 .products-container {
   text-align: center;
   padding: 20px;
-  background: #f8f8f8;
 }
 
 .search-bar {
@@ -40,10 +41,6 @@
   margin-bottom: 10px;
 }
 
-.price {
-  font-weight: bold;
-  color: #007bff;
-}
 
 .description {
   font-size: 14px;
@@ -51,7 +48,7 @@
 }
 
 .buy-button {
-  background: #007bff;
+  background: $base-color;
   color: white;
   border: none;
   padding: 10px 15px;
@@ -60,7 +57,8 @@
   margin-top: 10px;
 
   &:hover {
-    background: #0056b3;
+    background: $hover-color;
+    transition:0.3s;
   }
 }
 
@@ -80,4 +78,5 @@
   color: white;
   background-color: black;
   cursor: pointer;
+  transition:0.3s;
 }
