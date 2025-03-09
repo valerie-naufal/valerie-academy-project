@@ -1,19 +1,28 @@
-<div class="navbar-container" [ngClass]="{'scrolled': isScrolled}">
-  <div class="logo">
+<div class="navbar-container" [ngClass]="{ scrolled: isScrolled }">
+  <div class="logo" (click)="goToPage(['main'])">
     <img src="assets/logo_blue.png" alt="" />
   </div>
-  <div class="category-container" [ngClass]="{'scrolled': isScrolled}">
-    <button><p class="category-text">Men</p></button>
-    <button><p class="category-text">Women</p></button>
-    <button><p class="category-text">Kids</p></button>
+  <div class="category-container" [ngClass]="{ scrolled: isScrolled }">
+    <button class="category-text" (click)="goToPage(['products', 'mens'])">
+      Men
+    </button>
+    <button class="category-text" (click)="goToPage(['products', 'womens'])">
+      Women
+    </button>
+    <button class="category-text" (click)="goToPage(['products', 'jewelry'])">
+      Jewelry
+    </button>
   </div>
   <div class="line"></div>
   <div class="buttons-container">
-    <a (click)="openSearch()" class="search-btn"
-      ><img src="assets/search-svgrepo-com.svg" alt=""
-    /></a>
-    <img src="assets/shopping-bag-svgrepo-com.svg" alt="" />
-    <img src="assets/user-svgrepo-com.svg" alt="" />
+    <img
+      (click)="openSearch()"
+      class="search-btn"
+      src="assets/search.svg"
+      alt=""
+    />
+    <img src="assets/shopping-bag.svg" alt="" />
+    <img src="assets/user.svg" alt="" />
   </div>
 </div>
 <div class="search-container" *ngIf="isSearchOpen">
