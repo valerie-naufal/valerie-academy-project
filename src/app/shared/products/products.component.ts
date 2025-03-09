@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductsService, Product } from '../services/products.service';
+import { ProductsService, Product } from '../../services/products.service';
 import { CommonModule } from '@angular/common';
 import { BehaviorSubject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
-import { AuthService } from '../services/auth.service';
-import { NavbarComponent } from "../core/navbar/navbar.component";
+import { AuthService } from '../../services/auth.service';
+import { NavbarComponent } from '../../core/navbar/navbar.component';
 import { Router, RouterModule } from '@angular/router';
 
 @Component({
@@ -27,8 +27,12 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit() {
     this.productsService.getProducts().subscribe((data) => {
-      this.products = data;
-      this.filteredProducts = data;
+      this.products = data.filter(
+        (product) =>
+          product.category === 'jewelery' ||
+          product.category === "men's clothing" ||
+          product.category === "women's clothing"
+      );
     });
 
     //RxJs filtering

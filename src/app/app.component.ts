@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-import { LoginComponent } from "./core/login/login.component";
-import { RouterModule } from '@angular/router';
-import { ProductsComponent } from "./products/products.component";
+import { RouterModule, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [LoginComponent, RouterModule, ProductsComponent],
+  imports: [RouterModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
