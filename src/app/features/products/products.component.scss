@@ -25,6 +25,10 @@
   padding: 15px;
   text-align: center;
   transition: transform 0.3s;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   &:hover {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
@@ -37,6 +41,10 @@
   height: 100px;
   object-fit: contain;
   margin-bottom: 10px;
+}
+
+.title{
+  font-size:16px;
 }
 
 .description {

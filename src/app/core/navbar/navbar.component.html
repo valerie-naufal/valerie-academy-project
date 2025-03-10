@@ -21,11 +21,18 @@
       src="assets/search.svg"
       alt=""
     />
-    <img src="assets/shopping-bag.svg" alt="" />
-    <img src="assets/user.svg" alt="" />
+    <img
+      (click)="togglePane('cartPane')"
+      src="assets/shopping-bag.svg"
+      alt=""
+    />
+    <img (click)="togglePane('loginPane')" src="assets/user.svg" alt="" />
   </div>
 </div>
 <div class="search-container" *ngIf="isSearchOpen">
-  <input type="text" placeholder="Search" />
+  <input type="text" placeholder="Search..." (input)="filterProducts($event)" />
   <img (click)="closeSearch()" class="close-btn" src="assets/close.svg" />
 </div>
+
+<app-login-pane [closePane]="getCloseFunction('loginPane')"></app-login-pane>
+<app-cart-pane [closePane]="getCloseFunction('cartPane')"></app-cart-pane>

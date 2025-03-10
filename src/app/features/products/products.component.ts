@@ -8,6 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { AuthService } from '../../core/services/auth.service';
 import { Router, RouterModule, ActivatedRoute } from '@angular/router';
+import { SearchService } from '../../core/services/search.service';
 
 @Component({
   selector: 'app-products',
@@ -26,7 +27,8 @@ export class ProductsComponent implements OnInit {
     private productsService: ProductsService,
     private authService: AuthService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private searchService: SearchService
   ) {}
 
   ngOnInit() {
@@ -63,25 +65,23 @@ export class ProductsComponent implements OnInit {
                 product.category === "women's clothing"
             );
         }
+        this.filteredProducts = data;
       });
     });
 
-    //RxJs filtering
-    this.searchQuery
-      .pipe(
-        debounceTime(300),
-        distinctUntilChanged(),
-        map((query) =>
-          this.products.filter((product) =>
-            product.title.toLowerCase().includes(query.toLowerCase())
-          )
-        )
-      )
-      .subscribe((filtered) => (this.filteredProducts = filtered));
+    this.searchService.currentQuery.subscribe((query) => {
+      this.filterProducts(query);
+    });
   }
 
-  filterProducts(event: any) {
-    this.searchQuery.next(event.target.value);
+  filterProducts(query: string) {
+    if (!query) {
+      this.filteredProducts = this.products;
+    } else {
+      this.filteredProducts = this.products.filter((product) =>
+        product.title.toLowerCase().includes(query.toLowerCase())
+      );
+    }
   }
 
   logout() {
