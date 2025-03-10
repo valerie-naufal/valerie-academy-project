@@ -1,0 +1,28 @@
+@import "../../../styles.scss";
+
+.cart-container {
+  position:absolute;
+  top: 0;
+  right: -450px;
+  width: 400px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #eefaf9;
+  border: solid $base-color 3px;
+  z-index: 100;
+  border-radius: 25px;
+  transition: transform 0.3s ease-in-out;
+}
+.cart-container.open {
+  transform: translateX(-450px);
+}
+
+img{
+    position:absolute;
+    right:20px;
+    top:20px;
+    cursor: pointer;
+}
