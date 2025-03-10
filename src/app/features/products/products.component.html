@@ -6,9 +6,11 @@
   <div class="products-grid">
     <div *ngFor="let product of products" class="product-card">
       <img [src]="product.image" [alt]="product.title" class="product-image" />
-      <h3 class="title">{{ product.title}}</h3>
+      <h3 class="title">{{ product.title }}</h3>
       <p class="price">{{ product.price | currency }}</p>
-      <button class="buy-button" (click)="goToProduct(product.id)">Buy Now</button>
+      <button class="buy-button" (click)="goToProduct(product.id)">
+        Buy Now
+      </button>
     </div>
   </div>
 </div>

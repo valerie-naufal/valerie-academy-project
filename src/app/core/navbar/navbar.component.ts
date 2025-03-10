@@ -27,6 +27,7 @@ export class NavbarComponent {
 
   onSearch() {
     this.searchService.updateQuery(this.searchTerm);
+    console.log("is searching");
   }
 
   @HostListener('window:scroll', [])

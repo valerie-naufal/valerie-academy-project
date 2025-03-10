@@ -8,6 +8,6 @@ import { CommonModule } from '@angular/common';
   imports:[CommonModule]
 })
 export class ButtonComponent {
-  @Input() size: 'L' | 'S' | 'M' = 'S';
+  @Input() size: "L" | "S" | "M" = "S";
   @Input() btnText: string ='';
 }

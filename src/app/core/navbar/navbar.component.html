@@ -30,7 +30,12 @@
   </div>
 </div>
 <div class="search-container" *ngIf="isSearchOpen">
-  <input type="text" placeholder="Search..." (input)="filterProducts($event)" />
+  <input
+    type="text"
+    placeholder="Search..."
+    [(ngModel)]="searchTerm"
+    (keyup.enter)="onSearch()"
+  />
   <img (click)="closeSearch()" class="close-btn" src="assets/close.svg" />
 </div>
 
