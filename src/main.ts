@@ -13,6 +13,7 @@ import { LoginComponent } from './app/core/login/login.component';
 import { MainPageComponent } from './app/core/main-page/main-page.component';
 import { ProductDetailsComponent } from './app/features/product-details/product-details.component';
 import { ShopAllComponent } from './app/features/shop-all/shop-all.component';
+import { ProfileComponent } from './app/features/profile/profile.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [GuestGuard] },
@@ -29,6 +30,7 @@ const routes: Routes = [
   },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'main', component: MainPageComponent, canActivate: [AuthGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
 ];
 console.log('Registered Routes:', routes);
 

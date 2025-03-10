@@ -1,0 +1,61 @@
+<app-navbar></app-navbar>
+<div class="tab-selector">
+  <button
+    class="tabs"
+    (click)="selectTab(1)"
+    [class.active]="selectedTab === 1"
+  >
+    My Info
+  </button>
+  <button
+    class="tabs"
+    (click)="selectTab(2)"
+    [class.active]="selectedTab === 2"
+  >
+    Bookings
+  </button>
+  <button
+    class="tabs"
+    (click)="selectTab(3)"
+    [class.active]="selectedTab === 3"
+  >
+    Statistics
+  </button>
+</div>
+<div class="tab-content">
+  <div *ngIf="selectedTab === 1" id="info_tab">
+    <h2>Contact Information</h2>
+    <div>
+      <p><span>Username:</span></p>
+      <p><span>First Name:</span></p>
+      <p><span>Last Name:</span></p>
+      <p><span>Email:</span></p>
+    </div>
+  </div>
+
+  <div *ngIf="selectedTab === 2" id="booking_tab">
+    <h2>My Orders</h2>
+    <ul>
+      <div>Booking ID</div>
+      <div>Date</div>
+      <div>Time</div>
+      <div>Interviewer</div>
+      <div>Category</div>
+      <div>Amount ($):</div>
+    </ul>
+  </div>
+
+  <div *ngIf="selectedTab === 3" id="stats_tab">
+    <div>
+      <h2>Average Feedback Scores</h2>
+      <div>Communication Skills</div>
+      <div>Professionalism</div>
+      <div>Adaptability</div>
+      <div>Preparation</div>
+      <div>Competency</div>
+      <div>Time Management</div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
