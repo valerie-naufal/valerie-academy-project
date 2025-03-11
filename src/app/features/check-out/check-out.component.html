@@ -1,0 +1,55 @@
+<app-navbar></app-navbar>
+<div class="checkout-container">
+  <div class="payment-section">
+    <p class="title">Payment</p>
+    <div class="line"></div>
+    <form action="">
+      <p>Pay With:</p>
+      <div class="payment">
+        <div>
+          <input type="radio" id="card" name="payment-method" value="Card" />
+          <label for="html">Card</label>
+        </div>
+        <div>
+          <input type="radio" id="bank" name="payment-method" value="Bank" />
+          <label for="css">Bank</label>
+        </div>
+        <div>
+          <input type="radio" id="cash" name="payment-method" value="Cash" />
+          <label for="javascript">Cash</label>
+        </div>
+      </div>
+      <div class="card-nb">
+        <p>Card Number:</p>
+        <input type="text" placeholder="123 456 789" />
+      </div>
+      <div class="exp-date-cvv">
+        <div class="date">
+          <p>Expiration Date:</p>
+          <input type="text" placeholder="MM/YY" />
+        </div>
+        <div class="cvv">
+          <p class="text">CVV:</p>
+          <input type="text" placeholder="123" />
+        </div>
+      </div>
+
+      <div class="confirm">
+        <p>
+          Your personal data will be used to process your order, support your
+          experience throughout this website, and for other purposes described
+          in our privacy policy.
+        </p>
+        <app-button btnText="Complete Order" size="M"></app-button>
+      </div>
+    </form>
+  </div>
+  <!--end of payment container-->
+
+  <div class="summary-section">
+    <p>hello</p>
+  </div>
+  <!--end of summary container-->
+</div>
+<!--end of checkout container-->
+<app-footer></app-footer>

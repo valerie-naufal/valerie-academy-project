@@ -30,12 +30,13 @@
     border: none;
     cursor: pointer;
     transition: background 0.3s;
+    border-radius: 10px;
   }
   button.active {
     background-color: $base-color;
     color: white;
     font-weight: bold;
-    border:solid $base-color 2px;
+    border: solid $base-color 2px;
   }
 }
 .tab-content {
