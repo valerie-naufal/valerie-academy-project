@@ -1,7 +1,7 @@
 @import "../../../styles.scss";
 
 .cart-container {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: -450px;
   width: 400px;
@@ -34,25 +34,25 @@
   align-items: center;
   justify-content: space-around;
   border: solid $base-color 2px;
-  border-radius:10px;
+  border-radius: 10px;
   width: 90%;
   background-color: #eefaf9;
-  margin:10px 0;
+  margin: 10px 0;
 
   .item-img {
     width: 50px;
-    margin:10px;
+    margin: 10px;
   }
 
   .item-info {
     display: flex;
     flex-direction: column;
 
-    h4{
+    h4 {
       font-weight: normal;
-      max-width:80%;
-      margin-bottom:0;
-      font-size:14px;
+      max-width: 80%;
+      margin-bottom: 0;
+      font-size: 14px;
     }
 
     .line2 {
@@ -62,30 +62,30 @@
       align-items: center;
       input {
         width: 30px;
-        height:30px;
-        border:solid $base-color 1px;
-        border-radius:5px;
+        height: 30px;
+        border: solid $base-color 1px;
+        border-radius: 5px;
         text-align: center;
       }
     }
   }
-  .remove-item{
-    border:none;
-    background:none;
+  .remove-item {
+    border: none;
+    background: none;
   }
 }
 
-.btn{
+.btn {
   background-color: $hover-text-color;
-  color:white;
-  padding:10px;
-  border-radius:10px;
-  width:40%;
-  margin:10px;
-  border:none;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  width: 40%;
+  margin: 10px;
+  border: none;
 }
 
-.btn:hover{
+.btn:hover {
   background-color: $hover-color;
   color: $hover-text-color;
   transition: 0.2s;
@@ -97,11 +97,11 @@
 
 ::-webkit-scrollbar-thumb {
   background: $hover-color;
-  border-radius: 10px; 
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: $hover-text-color; 
+  background: $hover-text-color;
 }
 
 ::-webkit-scrollbar-track {

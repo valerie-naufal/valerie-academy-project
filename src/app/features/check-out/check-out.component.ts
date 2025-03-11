@@ -6,6 +6,7 @@ import { CartService } from '../../core/services/cart.service';
 import { IProduct } from '../../core/services/products.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { OrdersService } from '../../core/services/orders.service';
 
 @Component({
   selector: 'app-check-out',
@@ -16,7 +17,11 @@ import { CommonModule } from '@angular/common';
 export class CheckOutComponent {
   cartItems: IProduct[] = [];
   totalAmount: number = 0;
-  constructor(private cartService: CartService, private router: Router) {
+  constructor(
+    private cartService: CartService,
+    private ordersService: OrdersService,
+    private router: Router
+  ) {
     this.cartService.cart$.subscribe((items) => (this.cartItems = items));
   }
 
@@ -25,14 +30,18 @@ export class CheckOutComponent {
       this.cartItems = items;
       this.totalAmount = this.cartService.getTotalAmount();
     });
+    window.scrollTo(0, 0);
   }
 
   removeItem(productId: number) {
     this.cartService.removeFromCart(productId);
   }
 
-  clearCart() {
-    this.cartService.clearCart();
-    this.router.navigate(['main']);
+  completeOrder() {
+    if (this.totalAmount > 0) {
+      this.ordersService.completeOrder(this.totalAmount);
+      this.cartService.clearCart();
+      this.router.navigate(['/main']); 
+    }
   }
 }

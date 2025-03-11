@@ -11,8 +11,11 @@
     <h2>{{ product.title }}</h2>
     <p class="description">{{ product.description }}</p>
     <p class="price">{{ product.price | currency }}</p>
-    <button (click)="addToCart()">Add to Cart</button>
+    <button class="btn" (click)="addToCart()">Add to Cart</button>
   </div>
 </div>
+
+<div class="similar-section">Similar Products</div>
+<app-products></app-products>
 
 <app-footer></app-footer>

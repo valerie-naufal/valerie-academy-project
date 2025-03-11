@@ -30,13 +30,13 @@
     border: none;
     cursor: pointer;
     transition: background 0.3s;
-    border-radius: 10px;
   }
   button.active {
     background-color: $base-color;
     color: white;
     font-weight: bold;
     border: solid $base-color 2px;
+    border-radius: 10px;
   }
 }
 .tab-content {
@@ -48,4 +48,30 @@
   padding: 15px;
   border: 1px solid #ddd;
   background-color: white;
+}
+
+
+#orders-tab{
+  width: 80%;
+}
+.order-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.order-table th,
+.order-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.order-table th {
+  background-color: $base-color;
+  color: white;
+}
+
+.order-table tr:nth-child(even) {
+  background-color: #f2f2f2;
 }

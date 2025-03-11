@@ -36,6 +36,32 @@
   }
 }
 
+.btn{
+  background-color: $hover-text-color;
+  color:white;
+  padding:10px;
+  border-radius:10px;
+  width:40%;
+  margin:10px;
+  border:none;
+}
+
+.btn:hover{
+  background-color: $hover-color;
+  color: $hover-text-color;
+  transition: 0.2s;
+}
+
+.similar-section{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 30px;
+  padding-bottom:10px;
+  
+}
+
 @import "../../../styles.scss";
 
 :host ::ng-deep .navbar-container {

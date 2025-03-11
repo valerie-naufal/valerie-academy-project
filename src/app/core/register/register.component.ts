@@ -13,34 +13,30 @@ import { Router } from '@angular/router';
   selector: 'app-register',
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.scss'
+  styleUrl: './register.component.scss',
 })
-
 export class RegisterComponent {
   loginForm: FormGroup;
-  errorMessage: string = '';
 
   constructor(
-    private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private fb: FormBuilder
   ) {
     this.loginForm = this.fb.group({
-      firstName: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', Validators.required],
     });
   }
-
   onSubmit() {
     if (this.loginForm.valid) {
-      const { email, password } = this.loginForm.value;
-      this.authService.login(email, password);
+      const { firstName, lastName, email, password } = this.loginForm.value;
+      this.authService.signup(firstName, lastName, email, password);
     }
   }
   goToPage(patternArr: string[]) {
     this.router.navigate(patternArr);
   }
 }
-

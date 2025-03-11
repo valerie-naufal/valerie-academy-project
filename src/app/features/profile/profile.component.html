@@ -12,49 +12,38 @@
     (click)="selectTab(2)"
     [class.active]="selectedTab === 2"
   >
-    Bookings
-  </button>
-  <button
-    class="tabs"
-    (click)="selectTab(3)"
-    [class.active]="selectedTab === 3"
-  >
-    Statistics
+    My Orders
   </button>
 </div>
 <div class="tab-content">
   <div *ngIf="selectedTab === 1" id="info_tab">
-    <h2>Contact Information</h2>
+    <h2>My Information</h2>
     <div>
-      <p><span>Username:</span></p>
-      <p><span>First Name:</span></p>
-      <p><span>Last Name:</span></p>
-      <p><span>Email:</span></p>
+      <p><span>First Name:</span>{{ user?.username }}</p>
+      <p><span>Last Name:</span>{{ user?.lastName }}</p>
+      <p><span>Email:</span>{{ user?.email }}</p>
     </div>
   </div>
 
-  <div *ngIf="selectedTab === 2" id="booking_tab">
+  <div *ngIf="selectedTab === 2" id="orders-tab">
     <h2>My Orders</h2>
-    <ul>
-      <div>Booking ID</div>
-      <div>Date</div>
-      <div>Time</div>
-      <div>Interviewer</div>
-      <div>Category</div>
-      <div>Amount ($):</div>
-    </ul>
-  </div>
-
-  <div *ngIf="selectedTab === 3" id="stats_tab">
-    <div>
-      <h2>Average Feedback Scores</h2>
-      <div>Communication Skills</div>
-      <div>Professionalism</div>
-      <div>Adaptability</div>
-      <div>Preparation</div>
-      <div>Competency</div>
-      <div>Time Management</div>
-    </div>
+    <table class="order-table" *ngIf="orders.length > 0">
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Total Amount</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders">
+          <td>{{ order.id }}</td>
+          <td>{{ order.total | currency }}</td>
+          <td>{{ order.date }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <p *ngIf="orders.length === 0">No orders found.</p>
   </div>
 </div>
 

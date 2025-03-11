@@ -6,13 +6,14 @@ import { NavbarComponent } from '../../core/navbar/navbar.component';
 import { FooterComponent } from '../../core/footer/footer.component';
 import { CartService } from '../../core/services/cart.service';
 import { IProduct } from '../../core/services/products.service';
+import { ProductsComponent } from "../products/products.component";
 
 @Component({
   selector: 'app-product-details',
   standalone: true,
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.scss'],
-  imports: [CommonModule, NavbarComponent, FooterComponent],
+  imports: [CommonModule, NavbarComponent, FooterComponent, ProductsComponent],
 })
 export class ProductDetailsComponent implements OnInit {
   product: any;
@@ -25,10 +26,7 @@ export class ProductDetailsComponent implements OnInit {
 
   ngOnInit() {
     const productId = this.route.snapshot.paramMap.get('id');
-
-    console.log(
-      `ProductDetailsComponent: Loading product with ID = ${productId}`
-    );
+    window.scrollTo(0, 0);
 
     if (productId) {
       this.http
@@ -36,7 +34,6 @@ export class ProductDetailsComponent implements OnInit {
         .subscribe({
           next: (data) => {
             this.product = data;
-            console.log('Product loaded:', this.product);
           },
           error: (error) => {
             console.error('Error fetching product:', error);
@@ -48,7 +45,6 @@ export class ProductDetailsComponent implements OnInit {
   addToCart() {
     if (this.product) {
       this.cartService.addToCart(this.product);
-      console.log('Added to Cart:', this.product);
     }
   }
 }

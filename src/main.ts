@@ -36,7 +36,6 @@ const routes: Routes = [
   { path: 'checkout', component: CheckOutComponent, canActivate: [AuthGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [GuestGuard] },
 ];
-console.log('Registered Routes:', routes);
 
 bootstrapApplication(AppComponent, {
   providers: [
