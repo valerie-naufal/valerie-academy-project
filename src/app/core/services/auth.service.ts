@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { AuthApiService } from './auth-api.service';
 import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject, Observable, of} from 'rxjs';
 import { NgxPermissionsService } from 'ngx-permissions';
@@ -9,10 +8,9 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AuthService {
-  private isAuthenticated$!: BehaviorSubject<boolean>;
+  isAuthenticated$!: BehaviorSubject<boolean>;
 
   constructor(
-    private authApi: AuthApiService,
     private cookieService: CookieService,
     private permissionsService: NgxPermissionsService,
     private router: Router
@@ -31,7 +29,7 @@ export class AuthService {
 
     this.isAuthenticated$.next(true);
 
-    this.router.navigate(['/products']);
+    this.router.navigate(['/main']);
   }
 
   logout() {

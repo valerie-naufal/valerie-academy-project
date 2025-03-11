@@ -1,37 +1,22 @@
 import { Component, Input } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-  ReactiveFormsModule,
-} from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../core/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-pane',
   standalone: true,
   templateUrl: './login-pane.component.html',
   styleUrls: ['./login-pane.component.scss'],
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule],
 })
 export class LoginPaneComponent {
-  loginForm: FormGroup;
-  errorMessage: string = '';
-
   @Input() closePane!: () => void;
+  @Input() isLoggedIn: boolean = false;
+  @Input() loginAction!: () => void;
+  @Input() logoutAction!: () => void;
+  constructor(private router: Router) {}
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
-    this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-    });
-  }
-
-  onSubmit() {
-    if (this.loginForm.valid) {
-      const { email, password } = this.loginForm.value;
-      this.authService.login(email, password);
-    }
+  goToPage(patternArr: string[]) {
+    this.router.navigate(patternArr);
   }
 }

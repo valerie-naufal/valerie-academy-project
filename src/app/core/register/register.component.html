@@ -1,6 +1,22 @@
 <div class="login-container">
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
-    <h2>Login</h2>
+    <h2>Create Account</h2>
+
+    <div class="input-group">
+      <label>First Name</label>
+      <input type="text" formControlName="firstName" class="input-field" />
+      <small *ngIf="loginForm.get('firstName')?.touched">
+        This is a required field.
+      </small>
+    </div>
+
+    <div class="input-group">
+      <label>Last Name</label>
+      <input type="text" formControlName="lastName" class="input-field" />
+      <small *ngIf="loginForm.get('lastName')?.touched">
+        This is a required field.
+      </small>
+    </div>
 
     <div class="input-group">
       <label>Email</label>

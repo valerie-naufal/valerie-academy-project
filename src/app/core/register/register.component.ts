@@ -10,14 +10,13 @@ import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
-  standalone: true,
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: 'app-register',
   imports: [CommonModule, ReactiveFormsModule],
+  templateUrl: './register.component.html',
+  styleUrl: './register.component.scss'
 })
 
-export class LoginComponent {
+export class RegisterComponent {
   loginForm: FormGroup;
   errorMessage: string = '';
 
@@ -27,6 +26,8 @@ export class LoginComponent {
     private router: Router
   ) {
     this.loginForm = this.fb.group({
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
@@ -42,3 +43,4 @@ export class LoginComponent {
     this.router.navigate(patternArr);
   }
 }
+
