@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../../core/navbar/navbar.component';
 import { FooterComponent } from '../../core/footer/footer.component';
+import { CartService } from '../../core/services/cart.service';
+import { IProduct } from '../../core/services/products.service';
 
 @Component({
   selector: 'app-product-details',
@@ -15,7 +17,11 @@ import { FooterComponent } from '../../core/footer/footer.component';
 export class ProductDetailsComponent implements OnInit {
   product: any;
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) {}
+  constructor(
+    private route: ActivatedRoute,
+    private http: HttpClient,
+    private cartService: CartService
+  ) {}
 
   ngOnInit() {
     const productId = this.route.snapshot.paramMap.get('id');
@@ -36,6 +42,13 @@ export class ProductDetailsComponent implements OnInit {
             console.error('Error fetching product:', error);
           },
         });
+    }
+  }
+
+  addToCart() {
+    if (this.product) {
+      this.cartService.addToCart(this.product);
+      console.log('Added to Cart:', this.product);
     }
   }
 }

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { LoginPaneComponent } from '../../features/login-pane/login-pane.component';
 import { CartPaneComponent } from '../../features/cart-pane/cart-pane.component';
 import { SearchService } from '../services/search.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,10 +13,21 @@ import { SearchService } from '../services/search.service';
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
-  constructor(private router: Router, private searchService: SearchService) {}
+  constructor(
+    private router: Router,
+    private searchService: SearchService,
+    private authService: AuthService
+  ) {
+    this.authService.isAuthenticated$.subscribe((status) => {
+      this.isLoggedIn = status;
+    });
+  }
   isSearchOpen = false;
   isScrolled = false;
   searchTerm: string = '';
+  isPaneOpen = false;
+  isLoggedIn = false;
+  activePane: any;
 
   openSearch() {
     this.isSearchOpen = !this.isSearchOpen;
@@ -27,7 +39,7 @@ export class NavbarComponent {
 
   onSearch() {
     this.searchService.updateQuery(this.searchTerm);
-    console.log("is searching");
+    console.log('is searching');
   }
 
   @HostListener('window:scroll', [])
@@ -37,12 +49,15 @@ export class NavbarComponent {
       this.isScrolled = targetSection.getBoundingClientRect().top <= 0;
     }
   }
+
   togglePane(element: string) {
-    console.log(element);
+    this.isPaneOpen = !this.isPaneOpen;
     const pane = document.getElementById(element);
+    this.activePane = element;
+    console.log('toggling');
     if (pane) {
       pane.classList.toggle('open');
-      console.log('Toggling Pane');
+      console.log('added class');
     }
   }
 
@@ -53,4 +68,15 @@ export class NavbarComponent {
   goToPage(patternArr: string[]) {
     this.router.navigate(patternArr);
   }
+
+  navigateToLogin() {
+    this.togglePane('loginPane');
+    this.router.navigate(['/login']);
+  }
+
+  logout = () => {
+    this.authService.logout(); 
+    this.togglePane('loginPane'); 
+    
+  };
 }

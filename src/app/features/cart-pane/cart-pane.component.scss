@@ -1,7 +1,7 @@
 @import "../../../styles.scss";
 
 .cart-container {
-  position:absolute;
+  position: absolute;
   top: 0;
   right: -450px;
   width: 400px;
@@ -10,19 +10,93 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  background-color: #eefaf9;
+  background-color: white;
   border: solid $base-color 3px;
   z-index: 100;
   border-radius: 25px;
   transition: transform 0.3s ease-in-out;
+  overflow-y: scroll;
 }
 .cart-container.open {
   transform: translateX(-450px);
 }
 
-img{
-    position:absolute;
-    right:20px;
-    top:20px;
-    cursor: pointer;
+.close-btn {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  cursor: pointer;
+}
+
+.item-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  border: solid $base-color 2px;
+  border-radius:10px;
+  width: 90%;
+  background-color: #eefaf9;
+  margin:10px 0;
+
+  .item-img {
+    width: 50px;
+    margin:10px;
+  }
+
+  .item-info {
+    display: flex;
+    flex-direction: column;
+
+    h4{
+      font-weight: normal;
+      max-width:80%;
+      margin-bottom:0;
+      font-size:14px;
+    }
+
+    .line2 {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      align-items: center;
+      input {
+        width: 30px;
+        height:30px;
+        border:solid $base-color 1px;
+        border-radius:5px;
+        text-align: center;
+      }
+    }
+  }
+  .remove-item{
+    border:none;
+    background:none;
+  }
+}
+
+.clear-btn{
+  background-color: $hover-text-color;
+  color:white;
+  padding:10px;
+  border-radius:10px;
+  width:30%;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $hover-color;
+  border-radius: 10px; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $hover-text-color; 
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
 }

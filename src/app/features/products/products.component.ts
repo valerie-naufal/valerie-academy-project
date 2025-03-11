@@ -5,8 +5,6 @@ import {
 } from '../../core/services/products.service';
 import { CommonModule } from '@angular/common';
 import { BehaviorSubject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
-import { AuthService } from '../../core/services/auth.service';
 import { Router, RouterModule, ActivatedRoute } from '@angular/router';
 import { SearchService } from '../../core/services/search.service';
 
@@ -25,7 +23,6 @@ export class ProductsComponent implements OnInit {
 
   constructor(
     private productsService: ProductsService,
-    private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
     private searchService: SearchService
@@ -84,9 +81,6 @@ export class ProductsComponent implements OnInit {
     }
   }
 
-  logout() {
-    this.authService.logout();
-  }
   goToProduct(productId: number) {
     console.log(`Attempting to navigate to product ID: ${productId}`);
     this.router.navigate(['/product', productId]);

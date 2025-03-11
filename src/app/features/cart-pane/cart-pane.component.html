@@ -1,3 +1,31 @@
 <div class="cart-container" id="cartPane">
-  <img (click)="closePane()" src="assets/close.svg" alt="" />
+  <img (click)="closePane()" src="assets/close.svg" alt="" class="close-btn" />
+  <h3>Your Cart</h3>
+  <div *ngIf="cartItems.length === 0">
+    <p>Your cart is empty.</p>
+  </div>
+
+  <div *ngFor="let item of cartItems" class="item-card">
+    <img [src]="item.image" [alt]="item.title" class="item-img" />
+    <div class="item-info">
+      <h4>{{ item.title }}</h4>
+      <div class="line2">
+        <p>{{ item.price | currency }}</p>
+        <input
+          type="number"
+          [value]="item.quantity"
+          (change)="updateQuantity(item.id, $event)"
+          min="1"
+        />
+      </div>
+    </div>
+
+    <button (click)="removeItem(item.id)" class="remove-item">
+      <img src="assets/trash.svg" alt="" />
+    </button>
+  </div>
+
+  <button *ngIf="cartItems.length > 0" (click)="clearCart()" class="clear-btn">
+    Clear Cart
+  </button>
 </div>

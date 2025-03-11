@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { ProductListComponent } from './product-list/product-list.component';
+import { MainPageComponent } from './core/main-page/main-page.component';
 
 export const appRoutes: Routes = [
-  { path: '', component: ProductListComponent }, // Default route
+  { path: '', component: MainPageComponent }, // Default route
 ];

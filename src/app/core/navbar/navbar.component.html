@@ -39,5 +39,12 @@
   <img (click)="closeSearch()" class="close-btn" src="assets/close.svg" />
 </div>
 
-<app-login-pane [closePane]="getCloseFunction('loginPane')"></app-login-pane>
+<app-login-pane
+  [closePane]="getCloseFunction('loginPane')"
+  *ngIf="activePane === 'loginPane'"
+  [isLoggedIn]="isLoggedIn"
+  [loginAction]="navigateToLogin"
+  [logoutAction]="logout"
+  ></app-login-pane
+>
 <app-cart-pane [closePane]="getCloseFunction('cartPane')"></app-cart-pane>
