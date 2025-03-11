@@ -1,0 +1,22 @@
+<app-navbar></app-navbar>
+<div id="orders-tab">
+  <h2>All Orders</h2>
+  <table class="order-table" *ngIf="orders.length > 0">
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Total Amount</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <td>{{ order.id }}</td>
+        <td>{{ order.total | currency }}</td>
+        <td>{{ order.date }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <p *ngIf="orders.length === 0">No orders found.</p>
+</div>
+<app-footer></app-footer>

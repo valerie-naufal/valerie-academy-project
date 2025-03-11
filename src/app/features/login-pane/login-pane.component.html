@@ -3,6 +3,7 @@
     <button *ngIf="isLoggedIn" (click)="goToPage(['profile'])">
       My Profile
     </button>
+    <button *ngIf="isLoggedIn" (click)="goToPage(['admin'])">Admin</button>
     <button *ngIf="!isLoggedIn" (click)="loginAction()">Login</button>
     <button *ngIf="isLoggedIn" (click)="logoutAction()">Logout</button>
   </div>

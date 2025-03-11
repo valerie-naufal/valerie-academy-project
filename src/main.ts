@@ -16,6 +16,7 @@ import { ShopAllComponent } from './app/features/shop-all/shop-all.component';
 import { ProfileComponent } from './app/features/profile/profile.component';
 import { CheckOutComponent } from './app/features/check-out/check-out.component';
 import { RegisterComponent } from './app/core/register/register.component';
+import { AdminComponent } from './app/features/admin/admin.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [GuestGuard] },
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'main', component: MainPageComponent, canActivate: [AuthGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
   { path: 'checkout', component: CheckOutComponent, canActivate: [AuthGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [GuestGuard] },
 ];
