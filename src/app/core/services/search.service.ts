@@ -9,6 +9,7 @@ export class SearchService {
   currentQuery = this.searchQuery.asObservable();
 
   updateQuery(query: string) {
-    this.searchQuery.next(query);
+    console.log('Search Query Updated:', query); // ✅ Debugging log
+    this.searchQuery.next(query); // ✅ Update search term
   }
 }

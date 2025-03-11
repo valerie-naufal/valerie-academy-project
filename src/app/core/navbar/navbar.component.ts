@@ -5,10 +5,11 @@ import { LoginPaneComponent } from '../../features/login-pane/login-pane.compone
 import { CartPaneComponent } from '../../features/cart-pane/cart-pane.component';
 import { SearchService } from '../services/search.service';
 import { AuthService } from '../services/auth.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-navbar',
-  imports: [CommonModule, LoginPaneComponent, CartPaneComponent],
+  imports: [CommonModule, LoginPaneComponent, CartPaneComponent, FormsModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })
@@ -39,7 +40,8 @@ export class NavbarComponent {
 
   onSearch() {
     this.searchService.updateQuery(this.searchTerm);
-    console.log('is searching');
+    console.log(this.searchTerm);
+    this.router.navigate(['products', this.searchTerm]);
   }
 
   @HostListener('window:scroll', [])
@@ -75,8 +77,7 @@ export class NavbarComponent {
   }
 
   logout = () => {
-    this.authService.logout(); 
-    this.togglePane('loginPane'); 
-    
+    this.authService.logout();
+    this.togglePane('loginPane');
   };
 }
