@@ -25,7 +25,11 @@
     </button>
   </div>
 
-  <button *ngIf="cartItems.length > 0" (click)="clearCart()" class="clear-btn">
+  <button *ngIf="cartItems.length > 0" (click)="goToPage(['checkout'])" class="btn">
+    Check Out
+  </button>
+
+  <button *ngIf="cartItems.length > 0" (click)="clearCart()" class="btn">
     Clear Cart
   </button>
 </div>

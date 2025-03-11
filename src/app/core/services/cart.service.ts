@@ -6,16 +6,16 @@ import { IProduct } from '../services/products.service';
   providedIn: 'root',
 })
 export class CartService {
-  private cartItems: IProduct[] = []; 
+  private cartItems: IProduct[] = [];
   private cartSubject = new BehaviorSubject<IProduct[]>([]);
   cart$ = this.cartSubject.asObservable();
 
   addToCart(product: IProduct) {
     const existingItem = this.cartItems.find((item) => item.id === product.id);
     if (existingItem) {
-      existingItem.quantity = (existingItem.quantity || 1) + 1; 
+      existingItem.quantity = (existingItem.quantity || 1) + 1;
     } else {
-      this.cartItems.push({ ...product, quantity: 1 }); 
+      this.cartItems.push({ ...product, quantity: 1 });
     }
     this.cartSubject.next([...this.cartItems]);
   }
@@ -35,5 +35,12 @@ export class CartService {
   clearCart() {
     this.cartItems = [];
     this.cartSubject.next([]);
+  }
+
+  getTotalAmount(): number {
+    return this.cartItems.reduce(
+      (total, item) => total + item.price * (item.quantity || 1),
+      0
+    );
   }
 }

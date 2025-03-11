@@ -75,12 +75,20 @@
   }
 }
 
-.clear-btn{
+.btn{
   background-color: $hover-text-color;
   color:white;
   padding:10px;
   border-radius:10px;
-  width:30%;
+  width:40%;
+  margin:10px;
+  border:none;
+}
+
+.btn:hover{
+  background-color: $hover-color;
+  color: $hover-text-color;
+  transition: 0.2s;
 }
 
 ::-webkit-scrollbar {

@@ -2,6 +2,7 @@ import { Component, Input, inject } from '@angular/core';
 import { CartService } from '../../core/services/cart.service';
 import { IProduct } from '../../core/services/products.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart-pane',
@@ -13,7 +14,7 @@ export class CartPaneComponent {
   @Input() closePane!: () => void;
   cartItems: IProduct[] = [];
 
-  constructor(private cartService: CartService) {
+  constructor(private cartService: CartService, private router: Router) {
     this.cartService.cart$.subscribe((items) => (this.cartItems = items));
   }
 
@@ -28,5 +29,9 @@ export class CartPaneComponent {
 
   clearCart() {
     this.cartService.clearCart();
+  }
+
+  goToPage(patternArr: string[]) {
+    this.router.navigate(patternArr);
   }
 }
