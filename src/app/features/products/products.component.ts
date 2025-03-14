@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { BehaviorSubject } from 'rxjs';
 import { Router, RouterModule, ActivatedRoute } from '@angular/router';
 import { SearchService } from '../../core/services/search.service';
+import AOS from 'aos';
 
 @Component({
   selector: 'app-products',
@@ -20,6 +21,7 @@ export class ProductsComponent implements OnInit {
   filteredProducts: IProduct[] = [];
   searchQuery = new BehaviorSubject<string>('');
   category: string | null = null;
+  pageTitle: string;
 
   constructor(
     private productsService: ProductsService,
@@ -40,18 +42,21 @@ export class ProductsComponent implements OnInit {
             this.products = data.filter(
               (product) => product.category === "men's clothing"
             );
+            this.pageTitle = "Men's Clothing";
             break;
 
           case 'womens':
             this.products = data.filter(
               (product) => product.category === "women's clothing"
             );
+            this.pageTitle = "Women's Clothing";
             break;
 
           case 'jewelry':
             this.products = data.filter(
               (product) => product.category === 'jewelery'
             );
+            this.pageTitle = 'Jewelry';
             break;
 
           default:
@@ -61,6 +66,7 @@ export class ProductsComponent implements OnInit {
                 product.category === "men's clothing" ||
                 product.category === "women's clothing"
             );
+            this.pageTitle = 'Our Products';
         }
         this.filteredProducts = data;
       });
@@ -68,6 +74,9 @@ export class ProductsComponent implements OnInit {
 
     this.searchService.currentQuery.subscribe((query) => {
       this.filterProducts(query);
+    });
+    AOS.init({
+      startEvent: 'DOMContentLoaded',
     });
   }
 
@@ -82,7 +91,6 @@ export class ProductsComponent implements OnInit {
   }
 
   goToProduct(productId: number) {
-    console.log(`Attempting to navigate to product ID: ${productId}`);
     this.router.navigate(['/product', productId]);
   }
 }

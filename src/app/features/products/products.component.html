@@ -1,12 +1,17 @@
 <div class="products-container">
-  <div class="products-grid">
-    <div *ngFor="let product of products" class="product-card">
+  <div>
+    <h1>{{ pageTitle }}</h1>
+  </div>
+  <div class="products-grid" data-aos="fade-up" data-aos-duration="500">
+    <div *ngFor="let product of products" class="product-card" (click)="goToProduct(product.id)">
       <img [src]="product.image" [alt]="product.title" class="product-image" />
-      <h3 class="title">{{ product.title }}</h3>
-      <p class="price">{{ product.price | currency }}</p>
-      <button class="buy-button" (click)="goToProduct(product.id)">
-        Buy Now
-      </button>
+      <div class="product-info">
+        <p class="product-category">{{ pageTitle }}</p>
+        <h3 class="title">{{ product.title }}</h3>
+        <p class="price">{{ product.price | currency }}</p>
+      </div>
     </div>
   </div>
 </div>
+
+
