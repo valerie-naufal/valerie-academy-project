@@ -1,9 +1,13 @@
 <app-navbar></app-navbar>
 <div class="main-banner">
   <img src="assets/03152346119-a591.jpg" class="bg-container" />
-  <button class="shop-all-btn" (click)="goToPage(['products'])">Shop Now</button>
+  <button class="shop-all-btn" (click)="goToPage(['products'])">
+    Shop Now
+  </button>
 </div>
-<div class="collection" id="collection" ><h1>Summer Collection</h1></div>
+<div class="collection" id="collection"><h1>Summer Collection</h1></div>
 
-<app-products></app-products>
+<app-products class="products"></app-products>
+<app-products-carousel></app-products-carousel>
+<app-map></app-map>
 <app-footer></app-footer>

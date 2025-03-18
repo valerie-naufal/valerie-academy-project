@@ -1,0 +1,23 @@
+/* Set the size of the Swiper container */
+.swiper {
+  width: 90%;
+  height: 1000px; /* Adjust height as needed */
+}
+
+.swiper-wrapper {
+  height: 1000px !important;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f0f0f0; /* Slide background color */
+  text-align: center;
+  height: 100%;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: black;
+}
