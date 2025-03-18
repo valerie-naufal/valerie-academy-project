@@ -23,7 +23,7 @@
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 15px;
-  text-align: center;
+  //text-align: center;
   transition: transform 0.3s;
   display:flex;
   flex-direction: column;
@@ -43,13 +43,24 @@
   margin-bottom: 10px;
 }
 
-.title{
-  font-size:16px;
+.product-info{
+  width:90%;
 }
 
-.description {
-  font-size: 14px;
-  color: #555;
+.title{
+  font-size:16px;
+  text-align:left;
+  margin-top: 5px;
+}
+
+.product-category{
+  text-align:left;
+  margin-bottom:5px;
+  font-size: 13px;
+}
+
+.price{
+  text-align: left;
 }
 
 .buy-button {
@@ -65,23 +76,4 @@
     background: $hover-color;
     transition: 0.3s;
   }
-}
-
-.btn-container {
-  display: grid;
-  justify-content: end;
-}
-
-.logout-btn {
-  border-radius: 10px;
-  border: solid black 2px;
-  padding: 10px 20px;
-  font-weight: bold;
-}
-
-.logout-btn:hover {
-  color: white;
-  background-color: black;
-  cursor: pointer;
-  transition: 0.3s;
 }

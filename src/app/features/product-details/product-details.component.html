@@ -3,8 +3,14 @@
 <div class="product-container" *ngIf="product">
   <div class="img-div">
     <div class="img-borders">
-      <img src="assets/zoom.svg" id="zoom" alt="">
-      <img [src]="product.image" [alt]="product.title" class="product-image" />
+      <img src="assets/zoom.svg" id="zoom" alt="" />
+      <img
+        [src]="product.image"
+        [alt]="product.title"
+        class="product-image"
+        [style.transform]="'scale(' + scale + ')'"
+        [style.transform-origin]="transformOrigin"
+      />
     </div>
   </div>
   <div class="info-container">
