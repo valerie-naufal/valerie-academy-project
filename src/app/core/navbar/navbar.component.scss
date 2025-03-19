@@ -9,6 +9,7 @@
   justify-content: space-around;
   align-items: center;
   transition: 0.1s;
+  z-index: 100;
 }
 
 .navbar-container.scrolled {
@@ -24,6 +25,11 @@
   }
 
   .buttons-container img {
+    filter: invert(49%) sepia(7%) saturate(3072%) hue-rotate(160deg)
+      brightness(88%) contrast(88%);
+  }
+
+  .logo img {
     filter: invert(49%) sepia(7%) saturate(3072%) hue-rotate(160deg)
       brightness(88%) contrast(88%);
   }
