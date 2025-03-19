@@ -15,6 +15,7 @@ import {
   ProductsService,
   IProduct,
 } from '../../core/services/products.service';
+import { ReviewsService } from '../../core/services/reviews.service';
 
 @Component({
   selector: 'app-product-details',
@@ -31,6 +32,7 @@ export class ProductDetailsComponent implements OnInit {
   transformOrigin = 'center center';
   products: IProduct[] = [];
   pageTitle: string;
+  reviews: any[] = [];
 
   /* @HostListener('mousemove', ['$event'])
   onMouseMove(event: MouseEvent): void {
@@ -68,6 +70,7 @@ export class ProductDetailsComponent implements OnInit {
     private cartService: CartService,
     private productsService: ProductsService,
     private router: Router,
+    private reviewsService: ReviewsService
   ) {}
 
   ngOnInit() {
@@ -86,6 +89,7 @@ export class ProductDetailsComponent implements OnInit {
             console.error('Error fetching product:', error);
           },
         });
+      this.getReviews(productId);
     }
 
     // Filter data based on category value
@@ -131,5 +135,8 @@ export class ProductDetailsComponent implements OnInit {
   }
   goToProduct(productId: number) {
     this.router.navigate(['/product', productId]);
+  }
+  private getReviews(productId: string): void {
+    this.reviews = this.reviewsService.getReviewsByProductId(productId);
   }
 }

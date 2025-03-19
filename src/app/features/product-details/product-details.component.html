@@ -21,12 +21,30 @@
   </div>
 </div>
 
-<div class="reviews">Reviews</div>
+<div class="reviews">
+  <div *ngIf="reviews.length > 0">
+    <h3>Customer Reviews</h3>
+    <div *ngFor="let review of reviews">
+      <p>
+        <strong>{{ review.customer }}</strong> (Rating: {{ review.rating }})
+      </p>
+      <p>{{ review.comment }}</p>
+      <hr />
+    </div>
+  </div>
+  <div *ngIf="reviews.length === 0">
+    <p>No reviews yet for this product.</p>
+  </div>
+</div>
 
 <div class="similar-section">Similar Products</div>
 <div class="products-container">
   <div class="products-grid" data-aos="fade-up" data-aos-duration="500">
-    <div *ngFor="let product of products" class="product-card" (click)="goToProduct(product.id)">
+    <div
+      *ngFor="let product of products"
+      class="product-card"
+      (click)="goToProduct(product.id)"
+    >
       <img [src]="product.image" [alt]="product.title" class="product-image" />
       <div class="product-info">
         <p class="product-category">{{ pageTitle }}</p>
