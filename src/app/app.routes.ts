@@ -29,5 +29,11 @@ export const appRoutes: Routes = [
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
   { path: 'checkout', component: CheckOutComponent, canActivate: [AuthGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [GuestGuard] },
+  {
+    path: 'footer',
+    loadComponent: () =>
+      import('../app/features/product-details/product-details.component').then(
+        (m) => m.ProductDetailsComponent
+      ),
+  },
 ];
-
