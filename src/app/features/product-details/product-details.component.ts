@@ -84,6 +84,7 @@ export class ProductDetailsComponent implements OnInit {
           next: (data) => {
             this.product = data;
             this.category = this.product['category'];
+            console.log('Product Rating:', this.product?.rating.rate);
           },
           error: (error) => {
             console.error('Error fetching product:', error);

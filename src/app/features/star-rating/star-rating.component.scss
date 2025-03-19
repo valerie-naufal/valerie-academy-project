@@ -1,0 +1,23 @@
+.star-rating {
+  font-size: 24px; /* Size of the stars */
+}
+
+.star {
+  color: #d3d3d3; /* Default color for empty stars */
+  margin-right: 5px; /* Space between stars */
+}
+
+.star.filled {
+  color: #ffcc00; /* Yellow color for filled stars */
+}
+
+.star.empty {
+  color: #d3d3d3; /* Light gray for empty stars */
+}
+
+.star.half {
+  color: #ffcc00; /* Yellow color for half stars */
+  background: linear-gradient(to right, #ffcc00 50%, #d3d3d3 50%);
+  //-webkit-background-clip: text; /* Make the background clip to the text */
+  display: inline-block;
+}
