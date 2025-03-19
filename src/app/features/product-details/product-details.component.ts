@@ -5,28 +5,35 @@ import {
   ElementRef,
   ViewChild,
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../../core/navbar/navbar.component';
 import { FooterComponent } from '../../core/footer/footer.component';
 import { CartService } from '../../core/services/cart.service';
-import { IProduct } from '../../core/services/products.service';
-import { ProductsComponent } from "../products/products.component";
+import {
+  ProductsService,
+  IProduct,
+} from '../../core/services/products.service';
+import { ReviewsService } from '../../core/services/reviews.service';
 
 @Component({
   selector: 'app-product-details',
   standalone: true,
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.scss'],
-  imports: [CommonModule, NavbarComponent, FooterComponent, ProductsComponent],
+  imports: [CommonModule, NavbarComponent, FooterComponent],
 })
 export class ProductDetailsComponent implements OnInit {
   @ViewChild('img-borders') imageContainer!: ElementRef;
   product: any;
+  category: any;
   scale = 1;
   transformOrigin = 'center center';
- 
+  products: IProduct[] = [];
+  pageTitle: string;
+  reviews: any[] = [];
+
   /* @HostListener('mousemove', ['$event'])
   onMouseMove(event: MouseEvent): void {
     const container = this.imageContainer.nativeElement;
@@ -60,7 +67,10 @@ export class ProductDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
-    private cartService: CartService
+    private cartService: CartService,
+    private productsService: ProductsService,
+    private router: Router,
+    private reviewsService: ReviewsService
   ) {}
 
   ngOnInit() {
@@ -73,17 +83,61 @@ export class ProductDetailsComponent implements OnInit {
         .subscribe({
           next: (data) => {
             this.product = data;
+            this.category = this.product['category'];
+            console.log('Product Rating:', this.product?.rating.rate);
           },
           error: (error) => {
             console.error('Error fetching product:', error);
           },
         });
+      this.getReviews(productId);
     }
+
+    // Filter data based on category value
+    this.productsService.getProducts().subscribe((data) => {
+      switch (this.category) {
+        case "men's clothing":
+          this.products = data.filter(
+            (product) => product.category === "men's clothing"
+          );
+          this.pageTitle = "Men's Clothing";
+          break;
+
+        case "women's clothing":
+          this.products = data.filter(
+            (product) => product.category === "women's clothing"
+          );
+          this.pageTitle = "Women's Clothing";
+          break;
+
+        case 'jewelery':
+          this.products = data.filter(
+            (product) => product.category === 'jewelery'
+          );
+          this.pageTitle = 'Jewelry';
+          break;
+
+        default:
+          this.products = data.filter(
+            (product) =>
+              product.category === 'jewelery' ||
+              product.category === "men's clothing" ||
+              product.category === "women's clothing"
+          );
+          this.pageTitle = 'Our Products';
+      }
+    });
   }
 
   addToCart() {
     if (this.product) {
       this.cartService.addToCart(this.product);
     }
+  }
+  goToProduct(productId: number) {
+    this.router.navigate(['/product', productId]);
+  }
+  private getReviews(productId: string): void {
+    this.reviews = this.reviewsService.getReviewsByProductId(productId);
   }
 }

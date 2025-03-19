@@ -1,27 +1,62 @@
 <app-navbar></app-navbar>
-
-<div class="product-container" *ngIf="product">
-  <div class="img-div">
-    <div class="img-borders">
-      <img src="assets/zoom.svg" id="zoom" alt="" />
-      <img
-        [src]="product.image"
-        [alt]="product.title"
-        class="product-image"
-        [style.transform]="'scale(' + scale + ')'"
-        [style.transform-origin]="transformOrigin"
-      />
+<div *ngIf="product">
+  <div class="product-container" *ngIf="product">
+    <div class="img-div">
+      <div class="img-borders">
+        <img src="assets/zoom.svg" id="zoom" alt="" />
+        <img
+          [src]="product.image"
+          [alt]="product.title"
+          class="product-image"
+          [style.transform]="'scale(' + scale + ')'"
+          [style.transform-origin]="transformOrigin"
+        />
+      </div>
+    </div>
+    <div class="info-container">
+      <h2>{{ product.title }}</h2>
+      <p class="description">{{ product.description }}</p>
+      <p class="price">{{ product.price | currency }}</p>
+      <button class="btn" (click)="addToCart()">Add to Cart</button>
     </div>
   </div>
-  <div class="info-container">
-    <h2>{{ product.title }}</h2>
-    <p class="description">{{ product.description }}</p>
-    <p class="price">{{ product.price | currency }}</p>
-    <button class="btn" (click)="addToCart()">Add to Cart</button>
+
+  <div class="reviews">
+    <div *ngIf="reviews.length > 0">
+      <h3>Customer Reviews</h3>
+      <div *ngFor="let review of reviews">
+        <p>
+          <strong>{{ review.customer }}</strong>
+        </p>
+        <p>
+          Rating: {{ product.rating?.rate }}
+          <app-star-rating [rating]="product.rating?.rate"></app-star-rating>
+        </p>
+        <p>{{ review.comment }}</p>
+        <hr />
+      </div>
+    </div>
+    <div *ngIf="reviews.length === 0">
+      <p>No reviews yet for this product.</p>
+    </div>
   </div>
 </div>
-
 <div class="similar-section">Similar Products</div>
-<app-products></app-products>
+<div class="products-container">
+  <div class="products-grid" data-aos="fade-up" data-aos-duration="500">
+    <div
+      *ngFor="let product of products"
+      class="product-card"
+      (click)="goToProduct(product.id)"
+    >
+      <img [src]="product.image" [alt]="product.title" class="product-image" />
+      <div class="product-info">
+        <p class="product-category">{{ pageTitle }}</p>
+        <h3 class="title">{{ product.title }}</h3>
+        <p class="price">{{ product.price | currency }}</p>
+      </div>
+    </div>
+  </div>
+</div>
 
 <app-footer></app-footer>

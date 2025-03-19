@@ -7,7 +7,13 @@ import {
 } from '@angular/common/http';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { importProvidersFrom } from '@angular/core';
-import { appRoutes } from './app/app.routes'; 
+import { appRoutes } from './app/app.routes';
+import { NgModule } from '@angular/core';
+
+@NgModule({
+  imports: [RouterModule.forRoot(appRoutes, { onSameUrlNavigation: 'reload' })],
+})
+export class AppRoutingModule {}
 
 bootstrapApplication(AppComponent, {
   providers: [
