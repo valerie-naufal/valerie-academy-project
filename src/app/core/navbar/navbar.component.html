@@ -1,6 +1,6 @@
 <div class="navbar-container" [ngClass]="{ scrolled: isScrolled }">
   <div class="logo" (click)="goToPage(['main'])">
-    <img src="assets/logo_blue.png" alt="" />
+    <img src="assets/logo_white.png" alt="" />
   </div>
   <div class="category-container" [ngClass]="{ scrolled: isScrolled }">
     <button class="category-text" (click)="goToPage(['products', 'mens'])">
@@ -45,6 +45,5 @@
   [isLoggedIn]="isLoggedIn"
   [loginAction]="navigateToLogin"
   [logoutAction]="logout"
-  ></app-login-pane
->
+></app-login-pane>
 <app-cart-pane [closePane]="getCloseFunction('cartPane')"></app-cart-pane>
