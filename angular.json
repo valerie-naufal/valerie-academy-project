@@ -29,7 +29,11 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/styles.scss", "node_modules/aos/dist/aos.css", "node_modules/swiper/swiper-bundle.min.css"],
+            "styles": [
+              "src/styles.scss",
+              "node_modules/aos/dist/aos.css",
+              "node_modules/swiper/swiper-bundle.min.css"
+            ],
             "scripts": ["public/assets/worldmap.js", "public/assets/mapdata.js"]
           },
           "configurations": {
@@ -84,7 +88,11 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/styles.scss", "node_modules/aos/dist/aos.css", "node_modules/swiper/swiper-bundle.min.css"],
+            "styles": [
+              "src/styles.scss",
+              "node_modules/aos/dist/aos.css",
+              "node_modules/swiper/swiper-bundle.min.css"
+            ],
             "scripts": ["public/assets/worldmap.js", "public/assets/mapdata.js"]
           }
         }

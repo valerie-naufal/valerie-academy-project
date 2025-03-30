@@ -20,9 +20,10 @@ bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(appRoutes),
     provideHttpClient(withInterceptorsFromDi()),
-    importProvidersFrom(NgxPermissionsModule.forRoot(), RouterModule), provideServiceWorker('ngsw-worker.js', {
-            enabled: !isDevMode(),
-            registrationStrategy: 'registerWhenStable:30000'
-          }),
+    importProvidersFrom(NgxPermissionsModule.forRoot(), RouterModule),
+    provideServiceWorker('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      registrationStrategy: 'registerWhenStable:30000',
+    }),
   ],
 }).catch((err) => console.error(err));

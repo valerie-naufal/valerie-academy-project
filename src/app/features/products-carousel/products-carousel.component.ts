@@ -5,7 +5,7 @@ import 'swiper/swiper-bundle.css'; // Import Swiper CSS
 @Component({
   selector: 'app-products-carousel',
   templateUrl: './products-carousel.component.html',
-  styleUrls: ['./products-carousel.component.css'],
+  styleUrls: ['./products-carousel.component.scss'],
 })
 export class ProductsCarouselComponent implements OnInit {
   constructor() {}
