@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  frontend:
+    build: .
+    container_name: academy-project
+    ports:
+      - "80:80"
+    networks:
+      - academy-proj-net
+
+networks:
+  academy-net:
+    driver: bridge
