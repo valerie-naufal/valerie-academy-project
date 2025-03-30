@@ -8,7 +8,8 @@ import {
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { importProvidersFrom } from '@angular/core';
 import { appRoutes } from './app/app.routes';
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
+import { provideServiceWorker } from '@angular/service-worker';
 
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes, { onSameUrlNavigation: 'reload' })],
@@ -19,6 +20,9 @@ bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(appRoutes),
     provideHttpClient(withInterceptorsFromDi()),
-    importProvidersFrom(NgxPermissionsModule.forRoot(), RouterModule),
+    importProvidersFrom(NgxPermissionsModule.forRoot(), RouterModule), provideServiceWorker('ngsw-worker.js', {
+            enabled: !isDevMode(),
+            registrationStrategy: 'registerWhenStable:30000'
+          }),
   ],
 }).catch((err) => console.error(err));
